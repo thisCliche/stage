@@ -137,13 +137,19 @@ export default {
     geTel(tel) {
       return tel.substring(0, 3) + "****" + tel.substr(tel.length - 4);
     },
+    goLogin(){
+      this.$router.push({path:'/login'})
+    }
+  },
+  activated(){
+      this.phone = localStorage.getItem("phone");
+      if (this.phone != null) {
+        this.phone = this.geTel(this.phone);
+        this.isLogin = true;
+      } 
   },
   created() {
-    this.phone = localStorage.getItem("phone");
-    if (this.phone != null) {
-      this.phone = this.geTel(this.phone);
-      this.isLogin = true;
-    }
+    
 
     this.baseJs
       .ajaxReq("/mall/goods", { type: 1 }, "get", "")

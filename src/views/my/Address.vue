@@ -5,7 +5,7 @@
 				<span @click="goAddAddress">ADD</span>
 			</HeaderTop>
 			<ul v-if="!isShow">
-				<li class="van-hairline--bottom" v-for="(item,index) in addressList" :key="index">
+				<li class="van-hairline--bottom" v-for="(item,index) in addressList" :key="index" @click="isChoose ? backtoGoods(item) : ''">
 					<div class="info">
 						<span>CONSIGNEE: {{ item.name }}</span><span>{{ item.phone }}</span>
 					</div>
@@ -23,7 +23,7 @@
 							</van-radio-group>
 						</div>
 						<div class="right">
-							<span class="edit" @click="goEdit(item.id)"><i></i>Editor</span><span class="delete" @click="goDelete(item.id)"><i></i>Delete</span>
+							<span class="edit" @click.stop="goEdit(item.id)"><i></i>Editor</span><span class="delete" @click.stop="goDelete(item.id)"><i></i>Delete</span>
 						</div>
 					</div>
 				</li>
@@ -45,6 +45,7 @@ export default {
     return {
       radio: 0,
 			isShow: true,
+			isChoose: false,
 			addressList: [],
 			activeIcon: '/images/active.png',
 			inactiveIcon: '/images/current.png'
@@ -55,6 +56,10 @@ export default {
 		HeaderTop
 	},
 	methods: {
+		backtoGoods(item) {
+      sessionStorage.setItem('huabei2Address', JSON.stringify(item))
+      this.$router.go(-1)
+    },
 		// 添加
 		goAddAddress() {
 			this.$router.push("/addaddress");
@@ -103,6 +108,9 @@ export default {
 	},
 	created() {
 		this.getAddress();
+		if (this.$route.query.type) {
+        this.isChoose = true
+      }
 	}
 }
 </script>

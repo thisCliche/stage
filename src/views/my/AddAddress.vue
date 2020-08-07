@@ -71,7 +71,7 @@ export default {
 								message: "Edit succeeded!",
 								duration: 1000
 							});
-							this.$router.push("/address");
+							this.$router.go(-1);
 						}
 					})
 					.catch(err => {
@@ -91,7 +91,7 @@ export default {
 								message: "Added successfully!",
 								duration: 1000
 							});
-							this.$router.push("/address");
+							this.$router.go(-1);
 						}
 					})
 					.catch(err => {
