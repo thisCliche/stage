@@ -1,0 +1,12 @@
+@mixin background_img ($url,$level:left,$vertical:top,$percent:100%){
+    background: url($url) no-repeat $level $vertical;
+    background-size: $percent;
+}
+@mixin flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@mixin backgroundImg {
+    background-image: linear-gradient(#fc5661, #fd7663), linear-gradient(#ffdee8, #ffdee8);
+}
