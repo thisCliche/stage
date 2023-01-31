@@ -1,4 +1,5 @@
-# borrow
+# borrow 截图
+![预览](./stage.png)
 
 ## Project setup
 ```
